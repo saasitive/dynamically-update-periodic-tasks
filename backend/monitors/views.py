@@ -41,6 +41,11 @@ class MonitorViewSet(viewsets.ModelViewSet):
         except Exception as e:
             raise APIException(str(e))
 
+    def perform_destroy(self, instance):
+        if instance.task is not None:
+            instance.task.delete()
+        return super().perform_destroy(instance)
+
 
 class MonitorRequestViewSet(viewsets.ModelViewSet):
 

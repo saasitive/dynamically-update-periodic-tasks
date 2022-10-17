@@ -1,9 +1,10 @@
-# 
+#
 # celery -A backend worker --loglevel=info -P gevent --concurrency 1 -E
 # celery -A backend beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler --max-interval 60
 
 import os
 import sys
+
 from celery import Celery
 
 CURRENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

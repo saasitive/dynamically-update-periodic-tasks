@@ -22,7 +22,7 @@ class Monitor(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
-    
+
 class MonitorRequest(models.Model):
 
     # endpoint response time in miliseconds
