@@ -10,14 +10,15 @@ This example repository is very simple demo of [uptime monitoring service](https
 You can read more about [dynamic periodic tasks in the article](https://saasitive.com/tutorial/dynamically-update-periodic-tasks-celery/).
 
 
+## Sequence diagram of uptime monitoring 
+
 ```mermaid
 sequenceDiagram
     actor U as User
     participant S as Server
     participant DB as Database
-    participant W as Celery Worker
     participant B as Celery Beat
-    
+    participant W as Celery Worker
     
     U->>S: Create monitor 
     Note right of S: Create objects in DB
@@ -25,6 +26,13 @@ sequenceDiagram
     S->>DB: Create IntervalSchedule object
     S->>DB: Create Periodictack object
     
-    
+    loop every beat period
+        DB->>B: Get info about periodic tasks
+    end
+    loop Every interval period
+        B->>W: Create task
+        Note right of W: Execute task
+        W->>DB: Save task result (request data)
+    end 
     
 ```
