@@ -8,3 +8,23 @@ Example project showing how to dynamically add and remove periodic tasks in Cele
 This example repository is very simple demo of [uptime monitoring service](https://monitor-uptime.com). User can add server address and interval at which server uptime status will be checked. Tasks can be dynamically added or removed.
 
 You can read more about [dynamic periodic tasks in the article](https://saasitive.com/tutorial/dynamically-update-periodic-tasks-celery/).
+
+
+```mermaid
+sequenceDiagram
+    actor U as User
+    participant S as Server
+    participant DB as Database
+    participant W as Celery Worker
+    participant B as Celery Beat
+    
+    
+    U->>S: Create monitor 
+    Note right of S: Create objects in DB
+    S->>DB: Create Monitor object
+    S->>DB: Create IntervalSchedule object
+    S->>DB: Create Periodictack object
+    
+    
+    
+```
