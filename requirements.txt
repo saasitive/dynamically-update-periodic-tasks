@@ -1,0 +1,10 @@
+django
+djangorestframework
+django-filter
+markdown
+celery
+django-celery-beat
+gevent
+requests
+sqlalchemy
+
